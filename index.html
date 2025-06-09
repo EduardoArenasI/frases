@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Te quiero mucho mvd </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #fce3ec, #f9f9f9);
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .card {
+            border: none;
+            border-radius: 2rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+            background: #ffffffdd;
+            backdrop-filter: blur(10px);
+        }
+
+        h3 {
+            font-weight: 600;
+            color: #444;
+        }
+
+        .btn {
+            border-radius: 30px;
+            padding: 10px 20px;
+            font-weight: 500;
+            font-size: 16px;
+        }
+
+        .btn-feliz {
+            background-color: #ffd6e8;
+            color: #d63384;
+        }
+
+        .btn-triste {
+            background-color: #d6e6ff;
+            color: #1c7ed6;
+        }
+
+        .btn-enojada {
+            background-color: #ffe3e3;
+            color: #c92a2a;
+        }
+
+        .btn-desmotivada {
+            background-color: #fff3bf;
+            color: #e67700;
+        }
+
+        .btn-preocupada {
+            background-color: #d3f9d8;
+            color: #2b8a3e;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+        }
+
+        #frase {
+            font-size: 18px;
+            font-weight: 500;
+            padding: 20px;
+            border-radius: 20px;
+            background-color: #f8f9fa;
+            color: #555;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+
+<body>
+    
+    <div class="container d-flex flex-column justify-content-center align-items-center vh-100 gap-4">
+        <div class="card p-5 text-center" style="max-width: 600px; width: 100%;">
+          <h3 class="mb-4">¿Cómo te sientes hoy corazon 💕 ?</h3>
+          <div class="d-flex flex-wrap justify-content-center gap-2 mb-4">
+            <button class="btn btn-feliz" onclick="mostrarFrase('feliz')">Feliz</button>
+            <button class="btn btn-triste" onclick="mostrarFrase('triste')">Triste</button>
+            <button class="btn btn-enojada" onclick="mostrarFrase('enojada')">Enojada</button>
+            <button class="btn btn-desmotivada" onclick="mostrarFrase('desmotivada')">Desmotivada</button>
+            <button class="btn btn-preocupada" onclick="mostrarFrase('preocupada')">Preocupada</button>
+          </div>
+          <div id="frase" class="mx-auto" style="display: none;"></div>
+        </div>
+      
+        <div class="card p-5 text-center" style="max-width: 600px; width: 100%;">
+          <p class="mb-4">Para ti, mi amor: No importa cómo te sientas hoy, siempre estaré aquí para apoyarte y amarte incondicionalmente. 
+             <br> Eres mi alegría más grande. 💕</p>
+        </div>
+      </div>
+
+    <script>
+        const frases = {
+            feliz: [
+                "Tu sonrisa tiene el poder de iluminar cualquier lugar.",
+                "Disfruta este momento, te lo mereces.",
+                "Tu alegría es contagiosa.",
+                "Hay magia en tu forma de brillar.",
+                "El mundo necesita más de tu felicidad.",
+                "Eres una chispa de luz en este mundo.",
+                "Que tu risa nunca se apague.",
+                "Tu corazón agradecido es tu mayor tesoro.",
+                "El presente es perfecto tal como es.",
+                "Tu alegría inspira.",
+                "Hoy es un buen día para ser tú.",
+                "Tu energía positiva transforma todo.",
+                "Sigue celebrando cada paso que das.",
+                "La felicidad está en las pequeñas cosas.",
+                "Te ves hermosa sonriendo.",
+                "Todo lo que das con amor, vuelve multiplicado.",
+                "Hoy tu luz es más fuerte que nunca.",
+                "Cada risa tuya es una canción para el alma.",
+                "Nunca subestimes el poder de tu alegría.",
+                "Hoy elegiste ser feliz, y eso basta.",
+                "Estás brillando y se nota.",
+                "Disfruta lo simple, ahí vive la dicha.",
+                "Lo bueno se queda contigo.",
+                "Tu felicidad también es una forma de sanar.",
+                "Hoy agradece lo que te hace sonreír.",
+                "Sigue sumando momentos bonitos.",
+                "Eres un regalo para quienes te rodean.",
+                "Mereces toda la alegría que estás sintiendo.",
+                "Celebra cada emoción bonita.",
+                "Lo que te hace feliz te define más que nada.",
+                "Vive este instante con todo tu ser.",
+                "Hoy tu alma canta.",
+                "Permítete reír fuerte, amar profundo y vivir libre.",
+                "Eres más feliz cuando eres tú misma.",
+                "Estás viviendo tu mejor versión.",
+                "Tu alegría es tu mejor maquillaje.",
+                "Gracias por compartir tu luz.",
+                "Sigue construyendo recuerdos lindos.",
+                "Hoy todo te sale bien porque estás alineada.",
+                "Tu felicidad es resistencia y poder.",
+                "El universo sonríe contigo.",
+                "Sigue eligiendo lo que te hace bien.",
+                "Que este estado te acompañe por mucho tiempo.",
+                "Hoy es un día especial, y tú también.",
+                "No necesitas razones, solo disfruta el momento.",
+                "Tu bienestar es prioridad.",
+                "No hay límites para la alegría que puedes sentir.",
+                "Cada instante feliz merece ser vivido al máximo.",
+                "Permítete disfrutar sin culpa.",
+                "Ser feliz también es revolucionario.",
+                "Hoy estás exactamente donde debes estar."
+            ],
+            triste: [
+                "Está bien sentirse así, no estás sola.",
+                "Llorar también es sanar.",
+                "Permítete sentir sin juzgar.",
+                "Todo pasa, incluso este momento.",
+                "No eres débil por sentirte triste.",
+                "Hoy duele, pero no será para siempre.",
+                "Tu alma también necesita descanso.",
+                "Lo que sientes es válido.",
+                "Te abrazo con palabras, desde donde estés.",
+                "Tómate tu tiempo para sanar.",
+                "No apresures el proceso.",
+                "Un mal día no define tu vida.",
+                "Estás haciendo lo mejor que puedes.",
+                "Mereces comprensión, incluso de ti misma.",
+                "No tienes que estar bien todo el tiempo.",
+                "Hay luz esperando al final de esta sombra.",
+                "Tu dolor también merece espacio.",
+                "No estás rota, estás sintiendo.",
+                "Está bien no tener ganas.",
+                "Permítete el silencio si lo necesitas.",
+                "El corazón también necesita descanso.",
+                "No te culpes por sentir.",
+                "Tu tristeza no es tu identidad.",
+                "Un paso a la vez, cuando estés lista.",
+                "Hoy puedes solo respirar y ya es suficiente.",
+                "Incluso la noche más oscura termina.",
+                "No todo se tiene que entender ahora.",
+                "Ser fuerte también es llorar.",
+                "Tu vulnerabilidad es un acto de valentía.",
+                "Tienes derecho a tus emociones.",
+                "La tristeza no es debilidad, es humanidad.",
+                "Abraza lo que sientes sin miedo.",
+                "Mereces amabilidad, sobre todo de ti misma.",
+                "No te exijas más de lo que puedes dar.",
+                "Este momento pasará.",
+                "Cada lágrima es parte del proceso.",
+                "Todo florece después de una tormenta.",
+                "Hay belleza en la pausa.",
+                "Hoy descansa, mañana volverás a empezar.",
+                "Te mereces paz, incluso en medio del dolor.",
+                "Tú vales, incluso en tus días tristes.",
+                "Permítete ser humana.",
+                "Tu proceso es único y está bien.",
+                "Todo está bien en no estar bien.",
+                "No estás sola en lo que sientes.",
+                "El amor propio también se construye en días grises.",
+                "Tu alma está aprendiendo a sanar.",
+                "Hay esperanza más allá de este día.",
+                "Tu historia aún tiene capítulos felices.",
+                "Esta tristeza también te está transformando.",
+                "Mereces salir de esto, y lo harás."
+            ],
+            enojada: [
+                "Respira hondo... cada exhalación libera lo que pesa.",
+                "Tu enojo es válido, pero no lo dejes tomar el control.",
+                "Habla cuando estés lista, no cuando estés herida.",
+                "El silencio con paz es mejor que palabras con fuego.",
+                "Usa esa energía para proteger tu calma, no para perderla.",
+                "Está bien sentir enojo, es humano.",
+                "No te quemes con tu propio fuego.",
+                "Tu paz vale más que una respuesta impulsiva.",
+                "Contar hasta diez aún funciona.",
+                "Transforma tu furia en fuerza.",
+                "Mereces respuestas, pero no a costa de tu paz.",
+                "Es válido molestarme, pero no perderme.",
+                "La rabia también tiene su causa.",
+                "No eres tu enojo, eres mucho más.",
+                "La calma no es debilidad, es poder.",
+                "Puedes expresarte sin herirte.",
+                "Tu voz merece ser escuchada con respeto.",
+                "No reprimas lo que sientes, canalízalo.",
+                "A veces alejarse es un acto de amor propio.",
+                "Ser fuerte también es saber cuándo detenerse.",
+                "El enojo no te define, solo te avisa.",
+                "Haz pausas antes de reaccionar.",
+                "Nadie merece perderse a sí misma por un momento.",
+                "Lo que te molesta también te enseña.",
+                "Valida tus emociones, pero no las alimentes con odio.",
+                "Puedes gritar sin destruir.",
+                "Habla desde la herida sanada, no desde la abierta.",
+                "Date permiso de enfriar tu mente.",
+                "Una mente serena da mejores respuestas.",
+                "No todos los fuegos deben ser alimentados.",
+                "Guarda tu energía para ti.",
+                "No tienes que responder a todo.",
+                "Estás aprendiendo a protegerte sin romperte.",
+                "Usa tus palabras como medicina, no como arma.",
+                "Puedes defenderte sin herir.",
+                "El autocontrol es tu superpoder.",
+                "La paciencia no es pasividad, es inteligencia emocional.",
+                "Permítete una pausa antes de actuar.",
+                "Hoy eliges no perder tu centro.",
+                "Tu rabia merece dirección, no destrucción.",
+                "Gritar no siempre ayuda, respirar sí.",
+                "Vuelve a ti antes de explotar.",
+                "No todo merece una reacción.",
+                "Puedes sentir sin atacar.",
+                "Hoy eliges la calma como revolución.",
+                "Tu reacción no debe ser tu ruina.",
+                "Poner límites no es falta de amor.",
+                "Hay fuerza en no responder.",
+                "Puedes responder con firmeza y ternura.",
+                "Estás aprendiendo a liberar, no a cargar."
+            ],
+            desmotivada: [
+                "Descansar no es rendirse, es prepararse para seguir.",
+                "A veces no avanzar también es parte del camino.",
+                "Aunque no lo veas, has crecido más de lo que imaginas.",
+                "Tómate tu tiempo, pero no te detengas para siempre.",
+                "Tu esfuerzo no es en vano, solo necesita tiempo.",
+                "No necesitas hacer todo hoy, solo dar un paso.",
+                "Incluso el más lento que no se rinde, avanza.",
+                "Las metas grandes también se construyen con pausas.",
+                "Hoy puedes comenzar de nuevo.",
+                "Todo lo que necesitas está dentro de ti.",
+                "Lo importante es no rendirse.",
+                "Cada pequeño paso cuenta.",
+                "Eres más capaz de lo que crees.",
+                "La inspiración volverá, confía.",
+                "Hoy también vale, incluso si solo descansaste.",
+                "Tu valor no depende de tu productividad.",
+                "La energía volverá con el tiempo.",
+                "A veces parar es avanzar.",
+                "Estás donde necesitas estar.",
+                "No te presiones por no sentirte lista.",
+                "Está bien no tener ganas, no te castigues.",
+                "Solo por hoy, sé amable contigo.",
+                "Tu proceso es único y válido.",
+                "Descansa sin culpa.",
+                "Tienes permiso para intentarlo de nuevo mañana.",
+                "A veces solo necesitamos respirar.",
+                "El camino no siempre es recto, y eso está bien.",
+                "Vuelve cuando estés lista.",
+                "Estás aprendiendo, no fracasando.",
+                "Tu valor no se mide en logros.",
+                "Lo que hoy no puedes, mañana tal vez sí.",
+                "El ritmo lento también es progreso.",
+                "Está bien sentirte cansada.",
+                "No siempre es tiempo de producir, también de nutrir.",
+                "Estás reconstruyéndote.",
+                "Poco a poco es suficiente.",
+                "No estás sola en esto.",
+                "Puedes tomarte tu tiempo.",
+                "Cada día es una nueva oportunidad.",
+                "Sé compasiva contigo.",
+                "Nadie espera perfección de ti.",
+                "Recuérdate por qué empezaste.",
+                "Lo mejor aún puede llegar.",
+                "Cada esfuerzo cuenta.",
+                "Estás más cerca de lo que crees.",
+                "Sigue, aunque solo sea por ti.",
+                "Tienes permiso para sentirte así.",
+                "El motor se enciende con cariño, no con presión.",
+                "Eres suficiente, hoy y siempre.",
+                "Confía en el proceso, incluso cuando no lo veas."
+            ],
+            preocupada: [
+                "Ocúpate, no te preocupes. Paso a paso.",
+                "Lo que hoy te agobia, mañana tendrá solución.",
+                "Confía, todo se acomoda en su momento.",
+                "No trates de controlarlo todo, solo fluye.",
+                "Tus pensamientos no definen tu realidad.",
+                "Céntrate en lo que puedes hacer hoy.",
+                "No estás sola en esto, pide ayuda si la necesitas.",
+                "El futuro no es tu enemigo.",
+                "Hoy puede ser el principio del alivio.",
+                "Estás haciendo lo mejor que puedes, y eso basta.",
+                "Una cosa a la vez.",
+                "Suelta lo que no depende de ti.",
+                "La mente cansa más que el cuerpo.",
+                "Mereces descanso mental.",
+                "Lo peor rara vez sucede.",
+                "Respira profundamente, estás a salvo.",
+                "Está bien no tener todo bajo control.",
+                "No todo pensamiento es verdad.",
+                "El ahora es lo único real.",
+                "Confía en tu capacidad para resolver.",
+                "Tienes más herramientas de las que crees.",
+                "Las soluciones llegan con calma.",
+                "Tu paz es más importante que cualquier problema.",
+                "No estás atrapada, estás viviendo un proceso.",
+                "Puedes salir de esto.",
+                "Hoy puedes soltar un poco de esa carga.",
+                "Confía en que todo se acomoda.",
+                "Haz lo que puedas, el resto suéltalo.",
+                "Un día a la vez.",
+                "Tu mente necesita pausas.",
+                "El miedo es solo una alarma, no una sentencia.",
+                "Puedes con esto.",
+                "Lo que sientes es válido, pero no eterno.",
+                "No te agobies por lo que aún no ha pasado.",
+                "Lo incierto también puede ser bonito.",
+                "Te mereces tranquilidad.",
+                "Este momento es solo eso: un momento.",
+                "La tormenta mental pasará.",
+                "Hay calma después del pensamiento.",
+                "Nada dura para siempre, ni esta preocupación.",
+                "Tu mente también puede descansar.",
+                "Eres más grande que tus miedos.",
+                "Poco a poco, todo se aclara.",
+                "Confía en lo que ya has superado.",
+                "Suelta el “y si…” y abraza el “ahora”.",
+                "La preocupación no cambia el futuro, solo roba el presente.",
+                "Puedes respirar tranquilidad.",
+                "Tu paz también es prioridad.",
+                "El control empieza por dentro.",
+                "Estás haciendo lo mejor que puedes."
+            ]
+        };
+
+        function mostrarFrase(emocion) {
+            const opciones = frases[emocion];
+            const aleatoria = opciones[Math.floor(Math.random() * opciones.length)];
+            const fraseEl = document.getElementById('frase');
+            fraseEl.style.display = 'block';
+            fraseEl.textContent = aleatoria;
+        }
+    </script>
+
+</body>
+
+</html>
